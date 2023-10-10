@@ -1,4 +1,4 @@
-package MyLinkedList;
+package Chains;
 
 
 public class MyLinkedList<T> {
@@ -33,6 +33,15 @@ public class MyLinkedList<T> {
     }//add method
 
 
+    public void setHead(Node<T> node)
+    {
+        if(head!=null)
+        {
+            node.setNext(this.head.getNext());
+            this.head=node;
+
+        }
+    }
 //    public void removeNode(Node<T> node)
 //    {
 //        if(length>=0)
@@ -62,6 +71,58 @@ public class MyLinkedList<T> {
 
     }//method to remove element based on Data element
 
+    public Node<T> getNode(int index)
+    {
+        Node<T> tmp = this.head;
+
+        if(tmp!=null && index<=length && index>=0)
+        {if(index ==0)
+        {
+            return this.head;
+        }
+            int target=0;
+            while (target!=index)
+            {
+                target++;
+                tmp=tmp.getNext();
+
+            }
+            return tmp;
+        }
+        else
+        {
+            throw new RuntimeException("Index out of Array Bound Dana");
+        }
+
+    } // returns node on index
+
+    public Node<T> getNode4Ops(int index)
+    {
+        Node<T> tmp = this.head;
+
+        if(tmp!=null && index<=length && index>0)
+        {
+            int target=-1;
+            if(index ==0)
+            {
+                return this.head;
+            }
+            target++;
+            while (target!=index-1)
+            {
+                target++;
+                tmp=tmp.getNext();
+
+            }
+
+            return tmp;
+        }
+        else
+        {
+            throw new RuntimeException("Index out of Array Bound Dana");
+        }
+
+    }//used for getting the Node before the required.(used only for Node<T> node.setnext() ops
     public T getElementData(int index)
     {
         Node<T> tmp = this.head;
@@ -69,7 +130,6 @@ public class MyLinkedList<T> {
         if(tmp!=null && index<=length && index>=0)
         {
             int target=0;
-            boolean found = false;
             while (target!=index)
             {
                 target++;
@@ -82,7 +142,7 @@ public class MyLinkedList<T> {
         {
             throw new RuntimeException("Index out of Array Bound Dana");
         }
-    }
+    }//returns data value on index
     public void removeElementIndex(int index)
     {
         if(head!=null && index<=length && index>=0)
@@ -154,6 +214,7 @@ public class MyLinkedList<T> {
             if (index == 0) {
                 this.head = newNode;
                 newNode.setNext(tmp);
+                length++;
                 return;
             }
 
@@ -179,15 +240,40 @@ public class MyLinkedList<T> {
             System.err.println("List is Empty, or index is Wrong");
         }
     }
-    public void swap (int first,int second)
+    public void swapNodes(int first,int second)
     {
+        Node<T> tmp1 = getNode(first) ;
+        Node<T> tmp1Next = tmp1.getNext();
+        Node<T> tmp14Ops = getNode4Ops(first);
 
-        T fElement = getElementData(first);
-        T sElement = getElementData(second);
+        Node<T> tmp2 = getNode(second);
+        Node<T> tmp2Next = tmp2.getNext();
+        Node<T> tmp24Ops = getNode4Ops(second);
+
+        boolean is1Head = tmp1.equals(this.head);
+        boolean is2Head = tmp2.equals(this.head);
+
+        Node<T> firstNode = getNode(first);
+        Node<T> firstNodeNext  = firstNode.getNext();
+
+        Node<T> secondNode = getNode(second);
+        Node<T> secondNodeNext = secondNode.getNext();
 
 
 
-    }
+
+
+
+
+
+
+        System.out.println("I hope it swapped");
+
+
+
+
+
+    }//not finished , possible but very tricky and ezziyetli
 
     public String toString()
     {
@@ -218,5 +304,5 @@ public class MyLinkedList<T> {
     private int iteration_LL()
     {
         return -1;
-    }
+    }//not used
 }

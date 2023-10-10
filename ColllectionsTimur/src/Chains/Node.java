@@ -1,4 +1,4 @@
-package MyLinkedList;
+package Chains;
 
 public class Node<T>
 {
